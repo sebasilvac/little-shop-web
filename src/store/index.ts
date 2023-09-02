@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import counterReducer from './slices/counter';
 import pokemonReducer from './slices/pokemons';
+import productReducer from './slices/products';
 
 import type { TypedUseSelectorHook } from 'react-redux';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,6 +11,7 @@ export const store = configureStore({
   reducer: {
     counter: counterReducer,
     pokemons: pokemonReducer,
+    products: productReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware()
     .concat(localstorageMiddleware),
