@@ -11,6 +11,12 @@ import { IoHeartOutline } from 'react-icons/io5';
 
 const menuItems = [
   {
+    path: '/dashboard/products/picking',
+    icon: <IoBrowsersOutline size={30} />,
+    title: 'Picking',
+    subTitle: 'PickProducts',
+  },
+  {
     path: '/dashboard/main',
     icon: <IoBrowsersOutline size={30} />,
     title: 'Dashboard',
