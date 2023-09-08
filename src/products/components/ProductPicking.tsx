@@ -76,8 +76,8 @@ export const ProductPicking = () => {
 
       <div className="w-full mt-5" onKeyUp={handleKeyPress}>
         <form onSubmit={handleSubmit} className="w-full">
-          <div className="flex flex-wrap -mx-3 mb-6 w-full">
-            <div className={`w-full bg-red-700 px-2 mb-2 p-2 text-end`} style={style[modeForm]}>
+          <div className="flex flex-wrap w-full">
+            <div className={`w-full bg-red-700 px-2 p-2 text-end`} style={style[modeForm]}>
               <input
                 ref={inputScan as any}
                 autoFocus
