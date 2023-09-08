@@ -4,6 +4,7 @@ import { useAppDispatch } from '@/store';
 import {
   addProductPicking,
   deleteProductPicking,
+  resetProductPicking,
 } from '@/store/slices/products';
 import { Product } from '../interfaces';
 
@@ -34,6 +35,10 @@ const useKeyActions = (): KeyActions => {
         }
 
         setMode(Mode.DELETE);
+        break;
+      case 'Escape':
+        dispatch(resetProductPicking());
+        setMode(Mode.ADD);
         break;
       default:
         break;

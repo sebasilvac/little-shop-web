@@ -73,7 +73,6 @@ export const ProductPicking = () => {
         TOTAL: { productsState.selectedProducts.reduce((acc, product) => acc + product.total, 0) }
       </div>
 
-
       <div className="w-full mt-5" onKeyUp={handleKeyPress}>
         <form onSubmit={handleSubmit} className="w-full">
           <div className="flex flex-wrap w-full">
