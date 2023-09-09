@@ -1,4 +1,4 @@
-import { ProductGrid } from '@/products';
+import { ProductGrid, ProductMaintainer } from '@/products';
 import { Metadata } from 'next';
 
 export const metadata:Metadata = {
@@ -13,7 +13,7 @@ export default async function PokemonPage() {
       <span className="text-5xl my-2 mb-10">
         Listado de productos
       </span>
-      <ProductGrid />
+      <ProductMaintainer />
     </div>
   );
 }

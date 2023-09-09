@@ -17,6 +17,12 @@ const menuItems = [
     subTitle: 'PickProducts',
   },
   {
+    path: '/dashboard/products',
+    icon: <IoBrowsersOutline size={30} />,
+    title: 'Productos',
+    subTitle: 'Mantenedor de productos',
+  },
+  {
     path: '/dashboard/main',
     icon: <IoBrowsersOutline size={30} />,
     title: 'Dashboard',
