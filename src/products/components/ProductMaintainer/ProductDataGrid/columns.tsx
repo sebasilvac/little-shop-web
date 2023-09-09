@@ -1,5 +1,4 @@
 import { Product as IResponse } from '../../../interfaces/product';
-import { GridValueFormatterParams } from '@mui/x-data-grid';
 
 export const getColumns = (): any[] => {
   return [

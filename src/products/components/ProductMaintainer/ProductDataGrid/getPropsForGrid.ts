@@ -6,11 +6,9 @@ const properties = {
 
 const colorSelection = 'rgb(59 130 246)';
 
-const getPropsForGrid = (colorCustom: 'primary' | 'secondary' = 'primary') => {
-  const { BG_COLOR_PRIMARY, BG_COLOR_SECONDARY, FONT_COLOR_PRIMARY } =
+const getPropsForGrid = () => {
+  const { FONT_COLOR_PRIMARY } =
     properties;
-  const actualColorBackground =
-    colorCustom === 'primary' ? BG_COLOR_PRIMARY : BG_COLOR_SECONDARY;
 
   return {
     '& .MuiDataGrid-columnHeaderCheckbox .MuiDataGrid-columnHeaderTitleContainer': {

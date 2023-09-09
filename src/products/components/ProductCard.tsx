@@ -5,7 +5,7 @@ interface ProductCardProps {
 }
 
 export const ProductCard = (props: ProductCardProps) => {
-  const { id, title } = props.product;
+  const {  title } = props.product;
 
   return (
     <>

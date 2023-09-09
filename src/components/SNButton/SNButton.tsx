@@ -70,6 +70,7 @@ const SNButton = <T extends TagsByButton = 'button'>(
   const renderChildren = () =>
     endIcon || startIcon ? (
       <RenderChildrenWithIcon
+        // eslint-disable-next-line react/no-children-prop
         children={label}
         startIcon={startIcon}
         endIcon={endIcon}

@@ -12,7 +12,7 @@ export default function CounterPage() {
     <div className="flex flex-col items-center justify-center w-full h-full">
       <span>Productos en carrito de compras</span>
       
-      <CartCounter value={5} />
+      <CartCounter />
     </div>
   );
 }

@@ -20,7 +20,7 @@ const pokemonSlice = createSlice({
     toggleFavorite(state, action: PayloadAction<SimplePokemon>) {
       const pokemon = action.payload;
 
-      if (!!state.favorites[pokemon.id]) {
+      if (state.favorites[pokemon.id]) {
         delete state.favorites[pokemon.id];
         return;
       }

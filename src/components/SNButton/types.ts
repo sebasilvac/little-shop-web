@@ -6,7 +6,7 @@ import {
 } from 'react';
 import { SvgIconComponent } from '@mui/icons-material';
 
-import { ComponentWithIcon } from '@/interfaces';
+import { ComponentWithIcon } from '@/components/interfaces';
 
 export type TagsByButton = 'button' | 'a';
 

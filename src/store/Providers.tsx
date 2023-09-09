@@ -1,7 +1,7 @@
 'use client';
 
 import { Provider } from 'react-redux';
-import { store } from './';
+import { store } from '.';
 import { useEffect } from 'react';
 import { setFavorites } from './slices/pokemons';
 

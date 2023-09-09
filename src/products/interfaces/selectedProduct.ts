@@ -1,5 +1,5 @@
 export interface SelectedProduct {
-  id: number;
+  id: string;
   title: string;
   price: number;
   quantity: number;

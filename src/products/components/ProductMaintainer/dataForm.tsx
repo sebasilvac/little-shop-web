@@ -18,7 +18,7 @@ export const getParametersValidator = () => {
 };
 
 export const getPayload = (selectedItem: Product) => {
-  let payload: Product = {
+  const payload: Product = {
     ...selectedItem,
   };
   return payload;
