@@ -1,27 +1,27 @@
-import { Providers } from '@/store/Providers'
-import './globals.css'
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Providers } from '@/store/Providers';
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import './globals.css';
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Dashboard-base',
   description: 'dashboard base',
-}
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="es">
       <body className={inter.className}>
         <Providers>
-          {children}
+          {children}.
         </Providers>
       </body>
     </html>
-  )
+  );
 }

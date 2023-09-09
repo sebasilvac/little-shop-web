@@ -5,30 +5,30 @@ import getPropsForGrid from './getPropsForGrid';
 
 interface ProductDataGridProps {
   products: any;
-  productoSelccionado: any;
+  setRowSelected:(row: Product) => void;
 }
 
 export const ProductDataGrid = ({
   products,
-  productoSelccionado,
+  setRowSelected,
 }: ProductDataGridProps) => {
   return (
     <>
-        <DataGrid
-          disableColumnSelector
-          keepNonExistentRowsSelected
-          rowHeight={40}
-          loading={false}
-          rows={getRows(products)}
-          columns={getColumns()}
-          sx={getPropsForGrid()}
-          getRowId={(row: Product) => row.id}
-          slots={{ noRowsOverlay: CustomNoRowsOverlay }}
-          onRowClick={(row) => {
-            console.log('onRowClick', row);
-          }}
-          //rowSelectionModel={productoSelccionado}
-        />
+      <DataGrid
+        disableColumnSelector
+        keepNonExistentRowsSelected
+        rowHeight={40}
+        loading={false}
+        rows={getRows(products)}
+        columns={getColumns()}
+        sx={getPropsForGrid()}
+        getRowId={(row: Product) => row.id}
+        slots={{ noRowsOverlay: CustomNoRowsOverlay }}
+        onRowClick={(row) => {
+          console.log('onRowClick', row);
+          setRowSelected(row.row);
+        }}
+      />
     </>
   );
 };

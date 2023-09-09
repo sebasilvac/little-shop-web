@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import {
+  IoBarcodeOutline,
   IoBrowsersOutline,
   IoCalculatorOutline,
   IoLogoReact,
@@ -12,15 +13,15 @@ import { IoHeartOutline } from 'react-icons/io5';
 const menuItems = [
   {
     path: '/dashboard/products/picking',
-    icon: <IoBrowsersOutline size={30} />,
+    icon: <IoBarcodeOutline size={30} />,
     title: 'Picking',
     subTitle: 'PickProducts',
   },
   {
     path: '/dashboard/products',
     icon: <IoBrowsersOutline size={30} />,
-    title: 'Productos',
-    subTitle: 'Mantenedor de productos',
+    title: 'Products',
+    subTitle: 'Maintainer',
   },
   {
     path: '/dashboard/main',
