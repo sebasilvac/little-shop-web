@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import { Product } from '../interfaces';
+import { useDispatch } from 'react-redux';
+import { setFilteredValues } from '@/store/slices/products';
+import { productService as Service } from '@/services';
 
 const defaultValues: Product = {
   id: '',
@@ -9,18 +12,23 @@ const defaultValues: Product = {
   price: 0,
 };
 
-const disabledInputs = {
-  code: false,
-  title: false,
-  description: false,
-  price: false,
+const defaultDisabledInputs = {
+  id: true,
+  code: true,
+  title: true,
+  description: true,
+  price: true,
 };
 
 const useProducts = () => {
+  const dispatch = useDispatch();
   const [rowSelected, setRowSelected] = useState<Product>(defaultValues);
+  const [disabledInputs, setDisabledInputs] = useState(defaultDisabledInputs);
   
-  const create = async () => {
-    console.log('CREATE Not implemented yet...');
+  const create = async (payload: Product) => {
+    // call service create product
+    Service.create(payload);
+    
     return;
   };
 
@@ -29,13 +37,20 @@ const useProducts = () => {
     return;
   };
 
+  const updateResults = (products: Product[]) => {
+    dispatch(setFilteredValues(products))
+    return;
+  };
+
   return {
     create,
     update,
     defaultValues,
     disabledInputs,
+    setDisabledInputs,
     rowSelected,
     setRowSelected,
+    updateResults,
   };
 };
 

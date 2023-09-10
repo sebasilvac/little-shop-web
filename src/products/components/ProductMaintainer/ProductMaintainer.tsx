@@ -1,17 +1,15 @@
 'use client';
 
-import React, { useState } from 'react';
 import { useAppSelector } from '@/store';
 import { ProductDataGrid } from './ProductDataGrid/ProductDataGrid';
-import { useDispatch } from 'react-redux';
 import { Product } from '@/products/interfaces';
 import { getParametersValidator } from './dataForm';
 import { useProducts } from '@/products/hooks';
-import { useForms } from '@/hooks';
+import { useForms, useSearchFilter } from '@/hooks';
 import { ProductForm } from './ProductForm';
+import { InputSearch } from './InputSearch/InputSearch';
 
 export const ProductMaintainer = () => {
-  const dispatch = useDispatch();
   const productsState = useAppSelector((state) => state.products);
 
   const {
@@ -21,6 +19,8 @@ export const ProductMaintainer = () => {
     disabledInputs,
     rowSelected,
     setRowSelected,
+    setDisabledInputs,
+    updateResults,
   } = useProducts();
 
   const { formik, handleSubmit, actionForm, setActionForm, isLoading } =
@@ -29,36 +29,44 @@ export const ProductMaintainer = () => {
       paramsValidator: getParametersValidator(),
       createFn: create,
       updateFn: update,
+      disabledInputs: disabledInputs,
+      setDisabledInputs: setDisabledInputs,
+      pkey: ['id', 'code'],
     });
 
   return (
     <>
-      <div>
-        <ProductForm
-          rowSelected={rowSelected}
-          disabledInputs={disabledInputs}
-          actionForm={actionForm}
-          setActionForm={setActionForm}
-          formik={formik}
-          handleSubmit={handleSubmit}
-          isLoading={isLoading}
-        />
+      <div className='flex justify-center items-center w-full'>
+        <div className='w-1/2'>
+          <ProductForm
+            rowSelected={rowSelected}
+            setRowSelected={setRowSelected}
+            disabledInputs={disabledInputs}
+            actionForm={actionForm}
+            setActionForm={setActionForm}
+            formik={formik}
+            handleSubmit={handleSubmit}
+            isLoading={isLoading}
+          />
+        </div>
       </div>
 
-      <div
-        className="h-1/4 bg-blue-50"
-        style={{
-          height: 400,
-          width: '80%',
-          maxWidth: '70vw',
-          margin: '0 auto',
-        }}
-      >
-        <ProductDataGrid
-          products={productsState.products}
-          setRowSelected={setRowSelected}
-        />
+      <div className="flex justify-center items-center mt-12">
+        <div className='w-3/4'>
+          <InputSearch updateResults={updateResults} />
+        </div>
       </div>
+
+      <div className='flex justify-center items-center'>
+        <div className="h-80 w-3/4 mt-3 bg-blue-50">
+          <ProductDataGrid
+            products={productsState.filterdValues}
+            setRowSelected={setRowSelected}
+            formik={formik}
+          />
+        </div>
+      </div>
+
     </>
   );
 };

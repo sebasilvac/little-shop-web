@@ -5,7 +5,7 @@ interface ProductCardProps {
 }
 
 export const ProductPickingCard = (props: ProductCardProps) => {
-  const { id, title, quantity, price, total } = props.selectedProduct;
+  const { title, quantity, price, total } = props.selectedProduct;
 
   return (
     <>

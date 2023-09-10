@@ -6,27 +6,34 @@ import { productService as Service } from '@/services';
 interface PokemonState {
   products: Product[];
   selectedProducts: SelectedProduct[];
+  filterdValues: Product[];
 }
 
 const initialState: PokemonState = {
   products: [],
   selectedProducts: [],
+  filterdValues: [],
 };
 
 const productSlice = createSlice({
   name: 'products',
   initialState,
   extraReducers: (builder) => {
-    builder.addCase(
-      getAllProducts.fulfilled,
-      (state, action: { type: string; payload: Product[] }) => {
-        state.products = action.payload;
-      },
-    );
+    builder
+      .addCase(
+        getAllProducts.fulfilled,
+        (state, action: { type: string; payload: any }) => {
+          state.products = action.payload;
+          state.filterdValues = action.payload;
+        },
+      );
   },
   reducers: {
     setProducts(state, action: PayloadAction<Product[]>) {
       state.products = action.payload;
+    },
+    setFilteredValues(state, action: PayloadAction<Product[]>) {
+      state.filterdValues = action.payload;
     },
     addProductPicking(state, action: PayloadAction<Product>) {
       const index = state.selectedProducts.findIndex(
@@ -73,6 +80,7 @@ export const getAllProducts = createAsyncThunk('areas/getAll', async () => {
 
 export const {
   setProducts,
+  setFilteredValues,
   addProductPicking,
   deleteProductPicking,
   resetProductPicking,

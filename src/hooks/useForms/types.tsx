@@ -4,6 +4,9 @@ export interface IFormsParams {
   createFn: (values: any) => Promise<any>;
   updateFn: (values: any) => Promise<any>;
   deleteFn?: (values: any) => Promise<any>;
+  setDisabledInputs?: any;
+  disabledInputs?: any;
+  pkey?: string[];
 };
 
 export interface IActionForm {

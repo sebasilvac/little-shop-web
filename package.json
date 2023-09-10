@@ -24,6 +24,7 @@
     "classnames": "^2.3.2",
     "eslint-config-next": "13.4.4",
     "formik": "^2.4.4",
+    "luxon": "^3.4.3",
     "next": "13.4.4",
     "notistack": "^3.0.1",
     "postcss": "8.4.24",
@@ -37,6 +38,7 @@
     "yup": "^1.2.0"
   },
   "devDependencies": {
+    "@types/luxon": "^3.3.2",
     "@types/uuid": "^9.0.3",
     "@typescript-eslint/eslint-plugin": "^6.6.0",
     "@typescript-eslint/parser": "^6.6.0",

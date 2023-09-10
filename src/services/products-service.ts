@@ -17,4 +17,22 @@ export const productService = {
         return [];
       });
   },
+  create: async (payload: APIResponse) => {
+    return await axiosService()
+      .post<APIResponse>(PATH, payload)
+      .then((response) => response.data)
+      .catch((err) => {
+        console.error(err);
+        return null;
+      });
+  },
+  update: async (payload: APIResponse) => {
+    return await axiosService()
+      .put<APIResponse>(`${PATH}/${payload.id}`, payload)
+      .then((response) => response.data)
+      .catch((err) => {
+        console.error(err);
+        return null;
+      });
+  },
 };

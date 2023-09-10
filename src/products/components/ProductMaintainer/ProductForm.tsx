@@ -1,13 +1,14 @@
 import SNButton from '@/components/SNButton';
 import { useNotifications } from '@/hooks';
 import { Product } from '@/products/interfaces';
-import { Box, FormControl, InputLabel, Select, TextField } from '@mui/material';
-import React from 'react';
+import { Box, TextField } from '@mui/material';
+import React, { useEffect } from 'react';
 
 const t = (key: string) => key;
 
 interface ProductFormProps {
   rowSelected: Product;
+  setRowSelected: any;
   disabledInputs: any;
   actionForm: any;
   setActionForm: any;
@@ -18,6 +19,7 @@ interface ProductFormProps {
 
 export const ProductForm = ({
   rowSelected,
+  setRowSelected,
   disabledInputs,
   actionForm,
   setActionForm,
@@ -34,7 +36,7 @@ export const ProductForm = ({
       isEditing: false,
     });
 
-    //formik.resetForm();
+    formik.resetForm();
   };
 
   const resetForm = () => {
@@ -44,24 +46,6 @@ export const ProductForm = ({
   return (
     <>
       <Box component={'form'} autoComplete="off" onSubmit={() => {}}>
-
-        <div className="flex md:flex-row flex-col md:gap-6 mb-2">
-          <div className="flex flex-col gap-1 p-1 h-full w-full sm:mb-3 md:mb-1">
-            <TextField
-              id="id"
-              name="id"
-              label={t('ID')}
-              size="small"
-              className="z-0 mx-auto w-full"
-              disabled={disabledInputs.id}
-              error={Boolean(formik.errors.id)}
-              helperText={formik.errors.id}
-              onChange={formik.handleChange}
-              value={rowSelected.id}
-            />
-          </div>
-        </div>
-
         <div className="flex md:flex-row flex-col md:gap-6 mb-2">
           <div className="flex flex-col gap-1 p-1 h-full w-full sm:mb-3 md:mb-1">
             <TextField
@@ -74,7 +58,7 @@ export const ProductForm = ({
               error={Boolean(formik.errors.code)}
               helperText={formik.errors.code}
               onChange={formik.handleChange}
-              value={rowSelected.code}
+              value={formik.values.code ?? ''}
             />
           </div>
         </div>
@@ -91,7 +75,7 @@ export const ProductForm = ({
               error={Boolean(formik.errors.title)}
               helperText={formik.errors.title}
               onChange={formik.handleChange}
-              value={rowSelected.title}
+              value={formik.values.title ?? ''}
             />
           </div>
         </div>
@@ -108,7 +92,7 @@ export const ProductForm = ({
               error={Boolean(formik.errors.description)}
               helperText={formik.errors.description}
               onChange={formik.handleChange}
-              value={rowSelected.description ?? ''}
+              value={formik.values.description ?? ''}
             />
           </div>
         </div>
@@ -125,7 +109,7 @@ export const ProductForm = ({
               error={Boolean(formik.errors.price)}
               helperText={formik.errors.price}
               onChange={formik.handleChange}
-              value={rowSelected.price ?? ''}
+              value={formik.values.price ?? ''}
             />
           </div>
         </div>

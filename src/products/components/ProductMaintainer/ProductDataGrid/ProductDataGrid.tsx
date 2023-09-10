@@ -6,11 +6,13 @@ import getPropsForGrid from './getPropsForGrid';
 interface ProductDataGridProps {
   products: any;
   setRowSelected:(row: Product) => void;
+  formik: any;
 }
 
 export const ProductDataGrid = ({
   products,
   setRowSelected,
+  formik,
 }: ProductDataGridProps) => {
   return (
     <>
@@ -26,7 +28,9 @@ export const ProductDataGrid = ({
         slots={{ noRowsOverlay: CustomNoRowsOverlay }}
         onRowClick={(row) => {
           console.log('onRowClick', row);
-          setRowSelected(row.row);
+          //setRowSelected(row.row);
+
+          formik.setValues(row.row);
         }}
       />
     </>
