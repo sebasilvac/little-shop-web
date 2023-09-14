@@ -2,13 +2,9 @@ import Image from 'next/image';
 import {
   IoBarcodeOutline,
   IoBrowsersOutline,
-  IoCalculatorOutline,
   IoLogoReact,
 } from 'react-icons/io5';
-
-import { CgPokemon } from 'react-icons/cg';
 import { SidebarMenuItem } from './SidebarMenuItem';
-import { IoHeartOutline } from 'react-icons/io5';
 
 const menuItems = [
   {
@@ -23,38 +19,13 @@ const menuItems = [
     title: 'Products',
     subTitle: 'Maintainer',
   },
-  {
-    path: '/dashboard/main',
-    icon: <IoBrowsersOutline size={30} />,
-    title: 'Dashboard',
-    subTitle: 'Visualización',
-  },
-  {
-    path: '/dashboard/counter',
-    icon: <IoCalculatorOutline size={30} />,
-    title: 'Counter',
-    subTitle: 'counter client side',
-  },
-  {
-    path: '/dashboard/pokemons',
-    icon: <CgPokemon size={30} />,
-    title: 'Pokemons',
-    subTitle: 'generación estatica',
-  },
-  {
-    path: '/dashboard/favorites',
-    icon: <IoHeartOutline size={30} />,
-    title: 'Favoritos',
-    subTitle: 'estado global',
-  },
 ];
 
 export const Sidebar = () => {
   return (
     <div
       id="menu"
-      style={{ width: '400px' }}
-      className="bg-gray-900 min-h-screen z-10 text-slate-300 w-64 left-0 overflow-y-scroll"
+      className="bg-gray-900 w-1/3 min-h-screen z-10 text-slate-300 left-0 overflow-y-scroll"
     >
       <div id="logo" className="my-4 px-6">
         <h1 className="text-lg md:text-2xl font-bold text-white">
