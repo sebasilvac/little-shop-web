@@ -1,8 +1,4 @@
 export { ProductMaintainer } from './ProductMaintainer';
-
-export * from './ProductCard';
-export * from './ProductGrid';
-export * from './ProductMaintainer';
-export * from './ProductPicking';
-export * from './ProductPickingCard';
-export * from './ProductPickingGrid';
+export { ProductPicking } from './ProductPicking';
+export { ProductPickingCard } from './ProductPickingCard';
+export { ProductPickingGrid } from './ProductPickingGrid';

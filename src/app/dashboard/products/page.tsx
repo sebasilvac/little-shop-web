@@ -1,4 +1,4 @@
-import { ProductGrid, ProductMaintainer } from '@/products';
+import { ProductMaintainer } from '@/products';
 import { Metadata } from 'next';
 
 export const metadata:Metadata = {

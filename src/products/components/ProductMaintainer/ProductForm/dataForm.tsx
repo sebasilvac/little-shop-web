@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { Product } from '../../interfaces';
+import { Product } from '../../../interfaces';
 
 export const disableInputsObject = {
   code: true,
@@ -13,7 +13,7 @@ export const getParametersValidator = () => {
   return Yup.object().shape({
     code: Yup.string().required(t('Campo requerido') as string),
     title: Yup.string().required(t('Campo requerido') as string),
-    price: Yup.string().required(t('Campo requerido') as string).min(1),
+    price: Yup.number().required(t('Campo requerido') as string).min(1),
   });
 };
 

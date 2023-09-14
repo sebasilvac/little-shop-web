@@ -1,2 +1,2 @@
-export * from './product';
-export * from './selectedProduct';
+export type { Product, UpdateProductPayload } from './product';
+export type { SelectedProduct } from './selectedProduct';

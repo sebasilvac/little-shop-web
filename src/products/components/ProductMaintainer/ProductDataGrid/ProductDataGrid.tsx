@@ -4,12 +4,14 @@ import { Product } from '@/products/interfaces';
 import getPropsForGrid from './getPropsForGrid';
 
 interface ProductDataGridProps {
-  products: any;
+  rowSelected: Product;
+  products: Product[];
   setRowSelected:(row: Product) => void;
   formik: any;
 }
 
 export const ProductDataGrid = ({
+  rowSelected,
   products,
   setRowSelected,
   formik,
@@ -27,11 +29,10 @@ export const ProductDataGrid = ({
         getRowId={(row: Product) => row.id}
         slots={{ noRowsOverlay: CustomNoRowsOverlay }}
         onRowClick={(row) => {
-          console.log('onRowClick', row);
-          //setRowSelected(row.row);
-
+          setRowSelected(row.row);
           formik.setValues(row.row);
         }}
+        rowSelectionModel={rowSelected ? [rowSelected.id] : []}
       />
     </>
   );
