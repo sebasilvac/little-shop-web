@@ -3,14 +3,14 @@
 import { useAppSelector } from '@/store';
 import { ProductDataGrid } from './ProductDataGrid/ProductDataGrid';
 import { Product } from '@/products/interfaces';
-import { getParametersValidator } from './dataForm';
 import { useProducts } from '@/products/hooks';
-import { useForms, useSearchFilter } from '@/hooks';
-import { ProductForm } from './ProductForm';
+import { useForms } from '@/hooks';
+import { ProductForm, getParametersValidator } from './ProductForm';
 import { InputSearch } from './InputSearch/InputSearch';
+import { useEffect } from 'react';
 
 export const ProductMaintainer = () => {
-  const productsState = useAppSelector((state) => state.products);
+  
 
   const {
     create,
@@ -21,6 +21,7 @@ export const ProductMaintainer = () => {
     setRowSelected,
     setDisabledInputs,
     updateResults,
+    productsState,
   } = useProducts();
 
   const { formik, handleSubmit, actionForm, setActionForm, isLoading } =
@@ -62,6 +63,7 @@ export const ProductMaintainer = () => {
           <ProductDataGrid
             products={productsState.filterdValues}
             setRowSelected={setRowSelected}
+            rowSelected={rowSelected}
             formik={formik}
           />
         </div>

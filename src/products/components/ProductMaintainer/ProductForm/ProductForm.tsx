@@ -29,6 +29,9 @@ export const ProductForm = ({
 } : ProductFormProps) => {
   const { errorNotification } = useNotifications();
 
+  useEffect(() => {
+    handleCancel();
+  }, [rowSelected]);
 
   const handleCancel = () => {
     setActionForm({
@@ -36,7 +39,7 @@ export const ProductForm = ({
       isEditing: false,
     });
 
-    formik.resetForm();
+    formik.setValues(rowSelected);
   };
 
   const resetForm = () => {
@@ -139,10 +142,6 @@ export const ProductForm = ({
                     isCreating: false,
                     isEditing: true,
                   });
-
-                  formik.setValues({
-                    ...rowSelected,
-                  });
                 }}
               />
             </>
@@ -156,7 +155,6 @@ export const ProductForm = ({
                 onClick={async () => {
                   console.log('Guardar', formik.values)
 
-                  
                   const resultErrors = await formik.validateForm();
                   if (Object.keys(resultErrors).length > 0) {
                     errorNotification(

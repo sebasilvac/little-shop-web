@@ -1,7 +1,7 @@
 import { axiosService } from '@/services/axios-service';
 
 import {
-  Product as APIResponse,
+  Product as APIResponse, UpdateProductPayload,
 } from '@/products/interfaces';
 
 
@@ -26,9 +26,9 @@ export const productService = {
         return null;
       });
   },
-  update: async (payload: APIResponse) => {
+  update: async (id:string, payload: UpdateProductPayload) => {
     return await axiosService()
-      .put<APIResponse>(`${PATH}/${payload.id}`, payload)
+      .patch<APIResponse>(`${PATH}/${id}`, payload)
       .then((response) => response.data)
       .catch((err) => {
         console.error(err);

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { IActionForm, IFormsParams, IState } from './types';
+import { useNotifications } from '@/hooks';
 
 export interface InitialValues {
   [key: string]: any;
@@ -15,6 +16,7 @@ function useForms<T extends IState>({
   disabledInputs,
   pkey,
 }: IFormsParams) {
+  const { successNotification, errorNotification } = useNotifications();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [actionForm, setActionForm] = useState<IActionForm>({
     isCreating: false,
@@ -34,17 +36,34 @@ function useForms<T extends IState>({
   const handleSubmit = async () => {
     formik.handleChange(event);
 
-    console.log('handleChange from function handleSubmit  ');
-    console.log('formik.values', formik.values);
-    console.log('formik.errors', formik.errors);
+    const resultErrors = await formik.validateForm();
+    if (Object.keys(resultErrors).length > 0) {
+      return;
+    }
 
     if (actionForm.isCreating) {
       setIsLoading(true);
-      await createFn(formik.values);
+      const result = await createFn(formik.values);
+
+      if(result){
+        successNotification('Registro creado correctamente');
+        formik.resetForm(); //TODO: update position
+        return;
+      }
+
+      errorNotification('Error al crear el registro');
     }
 
     if (actionForm.isEditing) {
-      await updateFn(formik.values);
+      const result = await updateFn(formik.values);
+
+      if(result){
+        successNotification('Registro actualizado correctamente');
+        formik.resetForm(); //TODO: update position
+        return;
+      }
+
+      errorNotification('Error al editar el registro');
     }
 
     setIsLoading(false);
@@ -81,17 +100,13 @@ const updateInputs = (
   let disabledInputsTemp = { ...disabledInputs };
 
   if (actionForm.isCreating) {
-    // habilitar todos los inputs
-    keys.forEach((key) => {
-      disabledInputsTemp = {
-        ...disabledInputsTemp,
-        [key]: false,
-      };
-    });
+    disabledInputsTemp = enableAllKeys(disabledInputs);
   }
 
   if (actionForm.isEditing) {
     // habilitar todos los inputs menos los que son pkey
+    
+
     keys.forEach((key) => {
       if (pkey.includes(key)) {
         disabledInputsTemp = {
@@ -109,3 +124,28 @@ const updateInputs = (
 
   setDisabledInputs(disabledInputsTemp);
 };
+
+
+const disableAllKeys = (keys: string[], disabledInputs: any) => {
+  let disabledInputsTemp = { ...disabledInputs };
+  keys.forEach((key) => {
+    disabledInputsTemp = {
+      ...disabledInputsTemp,
+      [key]: true,
+    };
+  });
+  return disabledInputsTemp;
+};
+
+const enableAllKeys = (disabledInputs: any) => {
+  const keys = Object.keys(disabledInputs);
+
+  let disabledInputsTemp = { ...disabledInputs };
+  keys.forEach((key) => {
+    disabledInputsTemp = {
+      ...disabledInputsTemp,
+      [key]: false,
+    };
+  });
+  return disabledInputsTemp;
+}
