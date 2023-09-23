@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
-const PATH_URL_BASE = 'http://localhost:4000/api'; //TODO: set in .env
+const PATH_URL_BASE = process.env.API_URL_BASE;
 
 if (!PATH_URL_BASE) {
   throw 'PATH_URL_BASE not configure';
