@@ -66,6 +66,7 @@ function useForms<T extends IState>({
       errorNotification('Error al editar el registro');
     }
 
+    disableAllKeys(disabledInputs);
     setIsLoading(false);
     return true;
   };
@@ -105,8 +106,6 @@ const updateInputs = (
 
   if (actionForm.isEditing) {
     // habilitar todos los inputs menos los que son pkey
-    
-
     keys.forEach((key) => {
       if (pkey.includes(key)) {
         disabledInputsTemp = {
@@ -126,7 +125,8 @@ const updateInputs = (
 };
 
 
-const disableAllKeys = (keys: string[], disabledInputs: any) => {
+const disableAllKeys = (disabledInputs: any) => {
+  const keys = Object.keys(disabledInputs);
   let disabledInputsTemp = { ...disabledInputs };
   keys.forEach((key) => {
     disabledInputsTemp = {
