@@ -1,24 +1,26 @@
 'use client';
 
 import { Provider } from 'react-redux';
-import { store } from './';
-import { useEffect } from 'react';
-import { setFavorites } from './slices/pokemons';
+import { store } from '.';
+
+import { SnackbarProvider } from 'notistack';
 
 interface Props {
-  children: React.ReactNode,
+  children: React.ReactNode;
 }
 
-export const Providers = ({children}: Props) => {
-
-  useEffect(() => {
-    const favorites = JSON.parse(localStorage.getItem('favorite-pokemons') ?? '{}' );
-    store.dispatch(setFavorites(favorites));
-  }, []);
-
+export const Providers = ({ children }: Props) => {
   return (
     <Provider store={store}>
-      {children}
+      <SnackbarProvider
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+        maxSnack={2}
+      >
+        {children}
+      </SnackbarProvider>
     </Provider>
-  )
-}
+  );
+};
