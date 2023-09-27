@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import productReducer from './slices/products';
+import userReducer from './slices/users';
 
 import type { TypedUseSelectorHook } from 'react-redux';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,6 +9,7 @@ import { localstorageMiddleware } from './middlewares/localstorage-middleware';
 export const store = configureStore({
   reducer: {
     products: productReducer,
+    users: userReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware()
     .concat(localstorageMiddleware),

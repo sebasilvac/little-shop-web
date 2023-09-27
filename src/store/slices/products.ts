@@ -3,13 +3,13 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Product, SelectedProduct } from '@/products';
 import { productService as Service } from '@/services';
 
-interface PokemonState {
+interface ProductState {
   products: Product[];
   selectedProducts: SelectedProduct[];
   filterdValues: Product[];
 }
 
-const initialState: PokemonState = {
+const initialState: ProductState = {
   products: [],
   selectedProducts: [],
   filterdValues: [],
@@ -74,7 +74,7 @@ const productSlice = createSlice({
   },
 });
 
-export const getAllProducts = createAsyncThunk('areas/getAll', async () => {
+export const getAllProducts = createAsyncThunk('products/getAllProducts', async () => {
   return await Service.getAll();
 });
 
