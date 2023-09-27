@@ -6,13 +6,10 @@ import { useAppSelector } from '@/store';
 
 
 export const useLogin = () => {
-
   const { successNotification, errorNotification } = useNotifications();
-
   const usersState = useAppSelector((state) => state.users);
 
   const handleLoginGoogle = () => {
-
     console.log('handleLoginGoogle')
     redirect('http://localhost:4000/api/auth/google');
   };
@@ -41,6 +38,8 @@ export const useLogin = () => {
     localStorage.removeItem('TOKEN_EXPIRADO');
     localStorage.setItem('token', result.token);
     localStorage.setItem('email', result.email);
+
+    return true;
   };
 
   const handleLogout = () => {

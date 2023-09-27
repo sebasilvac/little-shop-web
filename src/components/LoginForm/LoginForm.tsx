@@ -14,10 +14,18 @@ import { FcGoogle } from 'react-icons/fc';
 import { LockOutlined as LockOutlinedIcon } from '@mui/icons-material';
 import { useLogin } from '@/hooks';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation'
 
 export const LoginForm = () => {
+  const router = useRouter();
+  const { handleLogin: login, handleLoginGoogle } = useLogin();
 
-  const { handleLogin, handleLoginGoogle } = useLogin();
+  const handleLogin = async (event: any) => {
+    const result = await login(event);
+    if(result) {
+      router.push('/dashboard/products/picking');
+    }
+  }
 
   return (
     <Container component="main" maxWidth="xs">
