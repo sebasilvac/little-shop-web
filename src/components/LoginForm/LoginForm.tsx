@@ -69,7 +69,7 @@ export const LoginForm = () => {
             sx={{ mt: 4, mb: 2 }}
             onClick={handleLoginGoogle}
           >
-            <Link href={'http://localhost:4000/api/auth'}>Sign In With Google</Link>
+            <Link href={`${process.env.API_URL_BASE}/auth`}>Sign In With Google</Link>
           </Button>
 
         </Box>
