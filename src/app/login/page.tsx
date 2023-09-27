@@ -11,12 +11,9 @@ import Container from '@mui/material/Container';
 import { LoginForm } from '@/components';
 
 export default function SignIn({params}: any) {
-
-  console.log('PARAMS', params)
-  
   return (
     <>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" className='bg-slate-50 rounded-lg shadow-md pb-12'>
         <CssBaseline />
         <Box
           sx={{

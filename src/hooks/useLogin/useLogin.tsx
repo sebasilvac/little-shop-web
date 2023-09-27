@@ -2,11 +2,14 @@ import { loginService as Service } from '@/services';
 import { ILogin } from '@/shared/interfaces';
 import useNotifications from '../useNotifications';
 import { redirect } from 'next/navigation';
+import { useAppSelector } from '@/store';
 
 
 export const useLogin = () => {
 
   const { successNotification, errorNotification } = useNotifications();
+
+  const usersState = useAppSelector((state) => state.users);
 
   const handleLoginGoogle = () => {
 
@@ -17,11 +20,6 @@ export const useLogin = () => {
   const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-
     const payload: ILogin = {
       email: data.get('email') as string,
       password: data.get('password') as string,
@@ -52,7 +50,17 @@ export const useLogin = () => {
   }
 
   const isLogin = () => {
-    return localStorage.getItem('token') ? true : false;
+    let isLogin = true;
+
+    if( localStorage.getItem('TOKEN_EXPIRADO') === 'SI' ) {
+      isLogin = false;
+    }
+
+    if(!localStorage.getItem('token')) {
+      isLogin = false;
+    }
+
+    return isLogin;
   }
 
   return {
