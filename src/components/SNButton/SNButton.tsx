@@ -39,8 +39,8 @@ const SNButton = <T extends TagsByButton = 'button'>(
   let buttonTypeClassNames = `flex justify-center space-x-2 items-center border border-2 ${
     disabled
       ? 'border-primary-disabled'
-      : 'border-primary-main hover:bg-primary-hovered hover:text-white'
-  } text-primary-main font-bold rounded-lg transition ease-in-out duration-100`;
+      : 'bg-slate-100 hover:bg-blue-500 hover:border-blue-700 hover:text-slate-100'
+  } text-slate-500 font-bold rounded-lg transition ease-in-out duration-100`;
 
   if (isRed) {
     buttonTypeClassNames = `border border-2 ${
