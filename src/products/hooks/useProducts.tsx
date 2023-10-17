@@ -55,12 +55,30 @@ const useProducts = () => {
   };
 
   const update = async (payload: Product) => {
-    return await Service.update(payload.id, {
+    const result = await Service.update(payload.id, {
       code: payload.code,
       title: payload.title,
       description: payload.description,
       price: Number(payload.price),
     });
+
+    if (!result) {
+      return result;
+    }
+
+    // update product list
+    const products = productsState.filterdValues.map((product) => {
+      if (product.id === result.id) {
+        return result;
+      }
+
+      return product;
+    });
+
+    // set products
+    updateResults(products);
+    dispatch(setProducts(products));
+    return result;
   };
 
   const updateResults = (products: Product[]) => {
