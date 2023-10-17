@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Product } from '../interfaces';
 import { useDispatch } from 'react-redux';
-import { setFilteredValues } from '@/store/slices/products';
+import { setFilteredValues, setProducts } from '@/store/slices/products';
 import { productService as Service } from '@/services';
 import { useAppSelector } from '@/store';
 
@@ -39,10 +39,19 @@ const useProducts = () => {
 
   
   const create = async (payload: Product) => {
-    return await Service.create({
+    const results = await Service.create({
       ...payload,
       price: Number(payload.price),
     });
+
+    if (!results) {
+      return results;
+    }
+
+    dispatch(setFilteredValues([...productsState.filterdValues, results]));
+    dispatch(setProducts([...productsState.filterdValues, results]));
+
+    return results;
   };
 
   const update = async (payload: Product) => {
