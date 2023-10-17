@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { IoHeartOutline } from 'react-icons/io5';
+import { RiShoppingCartLine } from "react-icons/ri";
 
 import { useKeyActions } from '@/products/hooks';
 import { useAppSelector } from '@/store';
@@ -51,7 +51,7 @@ export const ProductPicking = () => {
 
   const style = {
     add: {
-      backgroundColor: 'rgba(50, 200, 50, .5)',
+      backgroundColor: '#6ee7b7',
     },
     delete: {
       backgroundColor: 'rgba(200, 50, 50, .5)',
@@ -69,7 +69,7 @@ export const ProductPicking = () => {
         )}
       </div>
       
-      <div className='px-3 mb-6 w-full flex flex-row justify-end text-5xl text-red-600 font-bold'>
+      <div className='px-3 mb-6 w-full flex flex-row justify-end text-5xl text-red-500 font-bold'>
         TOTAL: { productsState.selectedProducts.reduce((acc, product) => acc + product.total, 0) }
       </div>
 
@@ -100,8 +100,8 @@ export const ProductPicking = () => {
 export const NoProducts = () => {
   return (
     <div className="flex flex-col h-full items-center justify-center ">
-      <IoHeartOutline size={100} className="text-red-500" />
-      <span>No hay productos</span>
+      <RiShoppingCartLine size={100} className="text-blue-500" />
+      <span className='font-bold text-blue-700'>No hay productos</span>
     </div>
   );
 };
